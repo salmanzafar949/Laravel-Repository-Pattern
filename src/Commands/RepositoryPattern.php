@@ -40,9 +40,8 @@ class RepositoryPattern extends Command
     {
         $name = $this->argument('name');
 
-        RepositoryService::MakeInterface($name);
-        RepositoryService::MakeRepositoryClass($name);
+        RepositoryService::ImplementNow($name);
 
-        $this->info("created");
+        $this->info("Repository pattern implemented for model ". $name);
     }
 }

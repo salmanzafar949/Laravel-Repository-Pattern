@@ -1,6 +1,6 @@
-# Laravel Repository Pattern 
+# Laravel Repository Pattern Implementation
 
-A simple Laravel 5 library that allows you to implement Repository Pattern with a single command
+A simple Laravel 5 and laravel 6 library that allows you to implement Repository Pattern with a single command
 
 ## Installation
 ```
@@ -8,7 +8,7 @@ composer require salmanzafar/laravel-crud-generator
 ```
 ## Features
 
-Will generate all the functionality for Repository pattern
+Will generate all the functionality for Repository pattern implementation
 
 * ServiceClass
 * Interface
@@ -34,7 +34,7 @@ After publishing the configuration file just run the below command
 php artisan make:repo ModelName
 ```
 
-Just it, Now you've successfully implemented the repository pattern
+That's it, Now you've successfully implemented the repository pattern
 
 ## Example
 
@@ -43,7 +43,7 @@ php artisan make:repo Car
 ```
 
 #### CarRepositoryInterface.php
-```angular2
+```php
 <?php
 
 namespace App\Repositories;
@@ -82,7 +82,7 @@ interface CarRepositoryInterface
 ```
 
 #### CarRepository.php
-```angular2
+```php
 <?php
 
 namespace App\Repositories;
@@ -136,4 +136,68 @@ class CarRepository implements CarRepositoryInterface
 }
 ```
 
-##### Now it's done just go to your controller and start using it.
+##### Now go to 
+```Repositories/RepositoryBackendServiceProvider.php```
+ and register the interface and class you have'just created
+
+```php
+<?php
+
+namespace App\Repositories;
+
+use Illuminate\Support\ServiceProvider;
+
+class RepositoryBackendServiceProvider extends ServiceProvider
+{
+
+    public function register()
+    {
+        $this->app->bind(
+            /*
+            * Register your Repository classes and interface here
+            **/
+
+            'App\Repositories\CarRepositoryInterface',
+            'App\Repositories\CarRepository'
+        );
+    }
+}
+
+```
+##### And now in your ```app/Http/Controllers/Carcontroller```
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Car;
+use App\Repositories\CarRepositoryInterface;
+
+class CarController extends Controller
+{
+    protected $car;
+
+    public function __construct(CarRepositoryInterface $car)
+    {
+        $this->$car = $car;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = $this->car->all();
+
+        return $data;
+    }
+    
+}
+```
+
+
+
+##### That's it you've successfully implemented Repository pattern in your code.

@@ -16,6 +16,7 @@ class RepositoryService {
         if (!file_exists($path=base_path('/Repositories')))
             mkdir($path, 0777, true);
 
+        self::MakeProvider();
         self::MakeInterface($name);
         self::MakeRepositoryClass($name);
     }
@@ -44,5 +45,13 @@ class RepositoryService {
 
         file_put_contents(base_path("/Repositories/{$name}Repository.php"), $template);
 
+    }
+
+    protected static function MakeProvider()
+    {
+        $template =  self::getStubs('RepositoryBackendServiceProvider');
+
+        if (!file_exists($path=base_path('/Repositories/RepositoryBackendServiceProvider.php')))
+            file_put_contents(base_path('/Repositories/RepositoryBackendServiceProvider.php'), $template);
     }
 }

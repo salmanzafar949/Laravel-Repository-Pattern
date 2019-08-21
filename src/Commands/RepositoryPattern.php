@@ -3,6 +3,7 @@
 namespace Salman\RepositoryPattern\Commands;
 
 use Illuminate\Console\Command;
+use Salman\RepositoryPattern\Service\RepositoryService;
 
 class RepositoryPattern extends Command
 {
@@ -39,6 +40,9 @@ class RepositoryPattern extends Command
     {
         $name = $this->argument('name');
 
-        $this->info($name);
+        RepositoryService::MakeInterface($name);
+        RepositoryService::MakeRepositoryClass($name);
+
+        $this->info("created");
     }
 }

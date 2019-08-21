@@ -14,7 +14,11 @@ class RepositoryPatterServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->loadViewsFrom(__DIR__.'/resources/stubs', 'RepositoryPattern');
+
+        $this->publishes([
+            __DIR__.'/resources/stubs' => resource_path('vendor/salmanzafar/stubs'),
+        ]);
     }
 
     /**

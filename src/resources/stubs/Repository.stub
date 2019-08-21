@@ -1,0 +1,52 @@
+<?php
+
+
+namespace App\Repositories;
+
+use App\{{modelName}};
+
+
+class {{modelName}}Repository implements {{modelName}}RepositoryInterface
+{
+    /**
+     * Get's a record by it's ID
+     *
+     * @param int
+     * @return collection
+     */
+    public function get($id)
+    {
+        return {{modelName}}::find($id);
+    }
+
+    /**
+     * Get's all records.
+     *
+     * @return mixed
+     */
+    public function all()
+    {
+        return {{modelName}}::all();
+    }
+
+    /**
+     * Deletes a record.
+     *
+     * @param int
+     */
+    public function delete($id)
+    {
+        {{modelName}}::destroy($id);
+    }
+
+    /**
+     * Updates a post.
+     *
+     * @param int
+     * @param array
+     */
+    public function update($id, array $data)
+    {
+        {{modelName}}::find($id)->update($data);
+    }
+}

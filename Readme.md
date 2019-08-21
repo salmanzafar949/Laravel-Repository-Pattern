@@ -4,8 +4,9 @@ A simple Laravel 5 and laravel 6 library that allows you to implement Repository
 
 ## Installation
 ```
-composer require salmanzafar/laravel-crud-generator
+composer require salmanzafar/laravel-repository-pattern
 ```
+
 ## Features
 
 Will generate all the functionality for Repository pattern implementation

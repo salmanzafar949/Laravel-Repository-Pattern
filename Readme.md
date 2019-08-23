@@ -39,7 +39,7 @@ That's it, Now you've successfully implemented the repository pattern
 
 ## Example
 
-```angular2
+```php
 php artisan make:repo Car
 ```
 
